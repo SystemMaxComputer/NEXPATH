@@ -32,3 +32,6 @@ class Grafo:
                                     "peligro": harassment_risk,
                                     "geometria": geometry})
         return None
+
+    def obtener_nodos(self):
+        return list(self.calles.keys())
