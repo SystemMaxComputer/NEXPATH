@@ -1,4 +1,4 @@
-import geopandas
+import geopandas as gpd
 
 #leer datos
-datos = geopandas.read_file('data\calles_de_medellin_con_acoso.csv', encoding='utf-8')
+datos = gpd.read_file('datos\calles_de_medellin_con_acoso.csv', encoding='utf-8')
