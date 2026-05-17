@@ -1,3 +1,5 @@
+import heapq
+
 def dijkstra(grafo, inicio, fin, alpha, beta):
 
     nodos = grafo.obtener_nodos()
@@ -6,54 +8,44 @@ def dijkstra(grafo, inicio, fin, alpha, beta):
     visitados = set()
     costos[inicio] = 0
 
-    while True:
-        nodo_actual = None
-        menor_distancia = float("inf")
+    heap = [(0, inicio)]  # (costo, nodo)
 
-        #nodo mas barato conocido
-        for nodo in nodos:
-            if nodo not in visitados:
-                if costos[nodo] < menor_distancia:
-                    menor_distancia = costos[nodo]
-                    nodo_actual = nodo
-
-        # no hay nodo barato
-        if nodo_actual is None:
-            break
+    while heap:
+        costo_actual, nodo_actual = heapq.heappop(heap)
         
-        #llegó al nodo final
+        if nodo_actual in visitados:
+            continue
+
+        visitados.add(nodo_actual)
+
         if nodo_actual == fin:
             break
-        
-        
-        visitados.add(nodo_actual)
-        
-        #visitar vecinos
-        for nodo in grafo.calles[nodo_actual]:
-            
-            vecino = nodo["para"]
-            costo_arista = (alpha * float(nodo["dist"]) + beta * float(nodo["peligro"]))
-            nuevo_costo = (costos[nodo_actual] + costo_arista)
 
-            # si el cosoto nuevo, es menor al que ya tenia el vecino anters se actualiza
+        for arista in grafo.calles[nodo_actual]:
+
+            vecino = arista["para"]
+            nombre_calle = arista["nombre"]
+            costo_arista = alpha * float(arista["dist"]) + beta * float(arista["peligro"])
+            nuevo_costo = costo_actual + costo_arista
+
             if nuevo_costo < costos[vecino]:
                 costos[vecino] = nuevo_costo
-                anteriores[vecino] = nodo_actual
+                anteriores[vecino] = (nodo_actual, nombre_calle)
+                heapq.heappush(heap, (nuevo_costo, vecino))
 
-    ruta = []
+    ruta_calles = []
     nodo = fin
-    
-    while nodo in anteriores:
-        
-        ruta.append(nodo)
-        nodo = anteriores[nodo]
-    
-    ruta.append(inicio)
 
-    ruta.reverse()
+    if fin in anteriores or fin == inicio:
+        while nodo in anteriores:
+            nodo_anterior, nombre_calle = anteriores[nodo]
+            ruta_calles.append(nombre_calle) 
+            nodo = nodo_anterior             
+        
+        ruta_calles.reverse()
 
     return {
-        "ruta": ruta,
+        "ruta": ruta_calles, 
         "costos": costos,
         "visitados": visitados
     }
