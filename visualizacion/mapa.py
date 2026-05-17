@@ -36,5 +36,4 @@ def visualizar_ruta(dijkstra_res: dict, inicio: tuple, nombre_archivo="index.htm
     ).add_to(m)
 
     m.save(nombre_archivo)
-    print(f"Mapa guardado exitosamente como '{nombre_archivo}'")
     return m
