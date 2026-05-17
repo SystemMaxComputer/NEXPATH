@@ -1,2 +1,4 @@
+pandas
+folium
 geopandas
 matplotlib
