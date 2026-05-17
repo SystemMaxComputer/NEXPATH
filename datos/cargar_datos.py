@@ -1,4 +1,5 @@
-import geopandas as gpd
+import pandas as pd
 
-#leer datos
-datos = gpd.read_file('datos\calles_de_medellin_con_acoso.csv', encoding='utf-8')
+
+def save_data(ruta):
+    return pd.read_csv(ruta, sep=";",encoding='utf-8')
