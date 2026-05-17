@@ -4,7 +4,7 @@ class Grafo:
     """
     Construccion del grafo
     
-    cada nodo es un coordenada
+    cada nodo es una coordenada
     y sus vecinos un diccionario 
     """
     def __init__(self):
@@ -34,6 +34,3 @@ class Grafo:
                                     "nombre": name,
                                     "geometria": geometry})
         return None
-
-    def obtener_nodos(self):
-        return list(self.calles.keys())
