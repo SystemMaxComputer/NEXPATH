@@ -33,19 +33,26 @@ def dijkstra(grafo, inicio, fin, alpha, beta):
                 anteriores[vecino] = (nodo_actual, nombre_calle)
                 heapq.heappush(heap, (nuevo_costo, vecino))
 
-    ruta_calles = []
+    ruta_coordenadas = []
+    ruta_nombres = []
     nodo = fin
 
     if fin in anteriores or fin == inicio:
         while nodo in anteriores:
+            ruta_coordenadas.append(nodo) 
+            
             nodo_anterior, nombre_calle = anteriores[nodo]
-            ruta_calles.append(nombre_calle) 
-            nodo = nodo_anterior             
+            ruta_nombres.append(nombre_calle) 
+            nodo = nodo_anterior
+            
+        ruta_coordenadas.append(inicio) 
         
-        ruta_calles.reverse()
+        ruta_coordenadas.reverse()
+        ruta_nombres.reverse()
 
     return {
-        "ruta": ruta_calles, 
+        "ruta": ruta_coordenadas,      
+        "nombre_calles": ruta_nombres,  
         "costos": costos,
         "visitados": visitados
     }
