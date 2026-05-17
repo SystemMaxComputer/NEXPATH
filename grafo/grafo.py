@@ -13,7 +13,7 @@ class Grafo:
     def insertar_nodo(self, nodo):
         self.calles[nodo] = []
     
-    def crear_intersecccion(self, origin, destination, length, oneway, harassment_risk, geometry):
+    def crear_interseccion(self, origin, destination, length, oneway, harassment_risk, geometry):
         oneway = oneway == "True"
         
         if origin not in self.calles:
