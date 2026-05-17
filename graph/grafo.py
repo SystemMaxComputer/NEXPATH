@@ -34,3 +34,9 @@ class Grafo:
                                     "nombre": name,
                                     "geometria": geometry})
         return None
+
+    def obtener_nodos(self):
+        return self.calles.keys()
+
+    def __repr__(self):
+        return str(self.calles.keys())
