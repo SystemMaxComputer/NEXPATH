@@ -1,7 +1,6 @@
 import folium
+from folium import plugins
 from algoritmos.dijkstra import dijkstra
-
-import folium
 
 def visualizar_ruta(dijkstra_res: dict, inicio: tuple, nombre_archivo="index.html"):
     
@@ -27,13 +26,13 @@ def visualizar_ruta(dijkstra_res: dict, inicio: tuple, nombre_archivo="index.htm
             icon=folium.Icon(color="red", icon="stop")
         ).add_to(m)
 
-    folium.PolyLine(
-        locations=ruta_folium, 
-        tooltip="RUTA ÓPTIMA", 
-        color="blue", 
-        weight=5, 
-        opacity=0.8
+    plugins.AntPath(
+        locations=ruta_folium,
+        color = "green", 
+        dash_array = [50,10]
     ).add_to(m)
 
+    m.fit_bounds(m.get_bounds())
+    
     m.save(nombre_archivo)
     return m
