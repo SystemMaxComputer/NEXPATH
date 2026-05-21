@@ -28,7 +28,7 @@ def visualizar_ruta(dijkstra_res: dict, inicio: tuple, nombre_archivo="index.htm
 
     plugins.AntPath(
         locations=ruta_folium,
-        color = "green", 
+        color = "blue", 
         dash_array = [50,10]
     ).add_to(m)
 
