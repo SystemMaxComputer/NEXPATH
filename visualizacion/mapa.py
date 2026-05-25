@@ -1,5 +1,6 @@
 import folium
 from folium import plugins
+from algoritmos.dijkstra import dijkstra
 
 def visualizar_ruta(dijkstra_res: dict, inicio: tuple, nombre_archivo="index.html"):
     
