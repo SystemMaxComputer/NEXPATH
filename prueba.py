@@ -30,7 +30,7 @@ def crear_grafo_con_datos(datos):
     return grafo
 
 
-datos = save_data("NEXPATH\datos\calles_de_medellin_con_acoso.csv")
+datos = save_data("datos/calles_de_medellin_con_acoso.csv")
 g = crear_grafo_con_datos(datos)
 
 inicio = (-75.598766, 6.2320727)
